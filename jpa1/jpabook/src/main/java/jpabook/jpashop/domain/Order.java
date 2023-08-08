@@ -23,13 +23,18 @@ public class Order {
     private Member member;
 
 
-    @OneToMany(mappedBy = "order ")
+    @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime orderDate;
     @Enumerated(EnumType.STRING)
     private  OrderStatus status;
 
+    //양방향 연관관계
+    public void addOrderItem(OrderItem orderItem){
+        this.orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
 
     public Long getId() {
         return id;

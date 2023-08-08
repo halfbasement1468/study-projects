@@ -12,19 +12,6 @@ public class Member {
     @Column(name = "USER_NAME", nullable = false)
     private String username;
 
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void changeTeam(Team team) {
-        this.team = team;
-
-        team.getMembers().add(this);
-    }
 
     public String getId() {
         return id;

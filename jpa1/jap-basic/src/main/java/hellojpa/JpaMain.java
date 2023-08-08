@@ -24,31 +24,17 @@ public class JpaMain {
 
 
         try{
-            Team t = new Team();
-            t.setName("TEAM_A");
-
-
-            em.persist(t);
 
             Member member = new Member();
-            member.setUsername("MEMBER_A");
-
-            member.changeTeam(t);
+            member.setUsername("member1");
 
             em.persist(member);
 
-            //이거 안해주면 1차캐시에서 find하ㅣ기떄문에 셀렉트 쿼리가 안나감
-            em.flush();
-            em.clear();
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);
 
-            Member findMember = em.find(Member.class, member.getId());
-
-            List<Member> members = findMember.getTeam().getMembers();
-
-            for (Member m : members) {
-                System.out.println("m= " + m.getUsername());
-            }
-
+            em.persist(team);
 
             tx.commit();
 
