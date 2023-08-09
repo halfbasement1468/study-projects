@@ -1,7 +1,11 @@
 package hellojpa;
 
+import org.hibernate.annotations.JoinFormula;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -21,7 +25,8 @@ public class Member {
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
 
-
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProductList = new ArrayList<>();
     public Team getTeam() {
         return team;
     }
