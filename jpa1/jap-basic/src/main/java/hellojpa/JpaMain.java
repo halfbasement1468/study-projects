@@ -25,10 +25,17 @@ public class JpaMain {
 
         try{
 
-            Member member = new Member();
-            member.setUsername("member1");
+         /*   Item item = new Item();
+            item.setName("gfg");
+            item.setPrice(123);
+            em.persist(item);*/
+            Movie movie = new Movie();
+            movie.setDirector("디렉터A");
+            movie.setActor("배우B");
+           // movie.setName("바람과함께안사라지다");
+           // movie.setPrice(100);
 
-
+            em.persist(movie);
             tx.commit();
 
         }catch (Exception e){
