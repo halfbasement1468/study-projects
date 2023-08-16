@@ -32,6 +32,8 @@ public class JpaMain {
             Movie movie = new Movie();
             movie.setDirector("디렉터A");
             movie.setActor("배우B");
+            movie.setName("네임");
+            movie.setPrice(500);
            // movie.setName("바람과함께안사라지다");
            // movie.setPrice(100);
 

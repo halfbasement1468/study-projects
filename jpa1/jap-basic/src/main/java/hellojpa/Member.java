@@ -3,6 +3,7 @@ package hellojpa;
 import org.hibernate.annotations.JoinFormula;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +28,7 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<MemberProduct> memberProductList = new ArrayList<>();
+
     public Team getTeam() {
         return team;
     }
