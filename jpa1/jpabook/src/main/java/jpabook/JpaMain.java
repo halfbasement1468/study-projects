@@ -1,5 +1,7 @@
 package jpabook;
 
+import jpabook.jpashop.domain.Book;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -23,6 +25,11 @@ public class JpaMain {
 
         try{
 
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("유정식");
+
+            em.persist(book);
             tx.commit();
 
         }catch (Exception e){
