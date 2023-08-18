@@ -19,6 +19,8 @@ public class JpaMain {
 
         EntityTransaction tx = em.getTransaction();
 
+
+
         //JPA에서 모든 데이터 변경은 트랜잭션 안에서 실행
         tx.begin();
 
@@ -26,13 +28,23 @@ public class JpaMain {
 
         try{
 
-            Member m = new Member();
-            m.setUsername("user");
-            m.setCreatedBy("yoo");
-            m.setCreatedDate(LocalDateTime.now());
+
+            Member member = new Member();
+            member.setUsername("hello");
+
+            em.persist(member);
+
+            em.flush();
+            em.clear();
+
+            Member reference = em.getReference(Member.class, member.getId());
 
 
-            em.persist(m);
+         /*   Member findmember = em.find(Member.class, member.getId());
+
+            pM(findmember);
+            memberAndTeam(findmember);*/
+
             tx.commit();
 
         }catch (Exception e){
@@ -45,6 +57,21 @@ public class JpaMain {
         //code
         em.close();
         emf.close();
+
+    }
+    private static void pM(Member member){
+        String username = member.getUsername();
+
+        System.out.println("username = " + username);
+
+    }
+    private static void memberAndTeam(Member member){
+        String username = member.getUsername();
+
+        System.out.println("username = " + username);
+        Team team = member.getTeam();
+
+        System.out.println("team = " + team);
 
     }
 }

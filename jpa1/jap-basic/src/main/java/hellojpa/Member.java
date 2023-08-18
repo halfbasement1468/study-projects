@@ -22,10 +22,10 @@ public class Member extends BaseEntity{
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
-    @OneToOne
+ /*   @OneToOne
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
-
+*/
     @OneToMany(mappedBy = "member")
     private List<MemberProduct> memberProductList = new ArrayList<>();
 
@@ -37,13 +37,13 @@ public class Member extends BaseEntity{
         this.team = team;
     }
 
-    public Locker getLocker() {
+   /* public Locker getLocker() {
         return locker;
     }
 
     public void setLocker(Locker locker) {
         this.locker = locker;
-    }
+    }*/
 
     public String getId() {
         return id;
