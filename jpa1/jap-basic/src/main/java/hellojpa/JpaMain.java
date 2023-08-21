@@ -28,22 +28,31 @@ public class JpaMain {
 
         try{
 
+            Child child1 = new Child();
+            Child child2 = new Child();
 
-            Member member = new Member();
-            member.setUsername("hello");
+            child1.setName("자식1");
+            child2.setName("자식2");
 
-            em.persist(member);
+
+            Parent parent = new Parent();
+            parent.setName("아빠");
+
+
+            parent.addChild(child1);
+            parent.addChild(child2);
+
+
+            em.persist(parent);
 
             em.flush();
             em.clear();
 
-            Member reference = em.getReference(Member.class, member.getId());
+
+            Parent parent1 = em.find(Parent.class, parent.getId());
 
 
-         /*   Member findmember = em.find(Member.class, member.getId());
-
-            pM(findmember);
-            memberAndTeam(findmember);*/
+            System.out.println("parent = " + parent1.getChildList().remove(0) );
 
             tx.commit();
 
