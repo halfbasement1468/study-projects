@@ -15,16 +15,16 @@ public class Team extends BaseEntity{
     @Column(name = "TEAM_NAME")
     private String name;
 
-    @OneToMany(mappedBy = "team")
-    private List<Member> members = new ArrayList<>();
+/*    @OneToMany(mappedBy = "team")
+    private List<Member> members = new ArrayList<>();*/
 
-    public List<Member> getMembers() {
+/*    public List<Member> getMembers() {
         return members;
     }
 
     public void setMembers(List<Member> members) {
         this.members = members;
-    }
+    }*/
 
     public Long getId() {
         return id;
