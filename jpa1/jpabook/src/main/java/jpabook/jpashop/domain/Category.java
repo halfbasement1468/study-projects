@@ -23,7 +23,7 @@ public class Category {
 
 
    //셀프
-   @ManyToOne
+   @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "PARENT_ID")
     private Category parent;
 
