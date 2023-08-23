@@ -25,7 +25,7 @@ public class JpaMain {
         tx.begin();
 
 
-
+//
         try{
 
             Member member = new Member();
