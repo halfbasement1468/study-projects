@@ -1,4 +1,6 @@
-package hellojpa;
+package org.example;
+
+import org.example.jpql.Member;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -7,10 +9,9 @@ import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.time.LocalDateTime;
 import java.util.List;
 
-public class JpaMain {
+public class Main {
     public static void main(String[] args) {
 
         //하나만 생성해서 애플리케이션 전체 공유
@@ -30,13 +31,6 @@ public class JpaMain {
 
 //
         try{
-
-
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<Member> query = cb.createQuery(Member.class);
-            Root<Member> m = query.from(Member.class);
-            CriteriaQuery<Member> username = query.select(m).where(cb.equal(m.get("username"), "ki,"));
-            List<Member> resultList = em.createQuery(username).getResultList();
 
 
 
