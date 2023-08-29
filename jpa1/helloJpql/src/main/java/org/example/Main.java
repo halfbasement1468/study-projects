@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.jpql.Member;
+import org.example.jpql.Team;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -33,9 +34,41 @@ public class Main {
         try{
 
 
+            Team team = new Team();
+            team.setName("teamA");
+            em.persist(team);
+
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setAge(10);
+            member.setTeam(team);
+
+            em.persist(member);
+
+            em.flush();
+            em.clear();
+
+        /*    List<Member> resultList = em.createQuery("select m from Member m where m.username = :name", Member.class)
+                    .setParameter("name", "member1")
+                    .getResultList();
+*/
+
+            String query ="select m from Member m where m.team.name = :teamName";
+
+            String query2 ="select m from Member m join m.team t where t.name = :teamName";
+
+            List<Member> resultList = em.createQuery(query, Member.class)
+                    .setParameter("teamName","teamA")
+                    .getResultList();
+
+            for (Member s : resultList) {
+                System.out.println("팀 접근 before mebmer.username " + s.getUsername());
+                System.out.println("팀접근 = " + s.getTeam().getName());
+
+            }
+
 
             tx.commit();
-
         }catch (Exception e){
             tx.rollback();
         }finally {
