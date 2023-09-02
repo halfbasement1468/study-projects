@@ -33,40 +33,45 @@ public class Main {
 //
         try{
 
+            Team teamA= new Team();
+            teamA.setName("팀A");
+            em.persist(teamA);
 
-            Team team = new Team();
-            team.setName("teamA");
-            em.persist(team);
+            Team teamB = new Team();
+            teamB.setName("팀B");
+            em.persist(teamB);
 
-            Member member = new Member();
-            member.setUsername("member1");
-            member.setAge(10);
-            member.setTeam(team);
+            Member memberA = new Member();
+            memberA.setUsername("회원1");
+            memberA.changeTeam(teamA);
+            em.persist(memberA);
 
-            em.persist(member);
+
+
+            Member memberB = new Member();
+            memberB.setUsername("회원2");
+            memberB.changeTeam(teamA);
+            em.persist(memberB);
+
+            Member memberC = new Member();
+            memberC.setUsername("회원3");
+            memberC.changeTeam(teamB);
+            em.persist(memberC);
+
+            Member memberD = new Member();
+            memberD.setUsername("회원4");
+            em.persist(memberD);
+
 
             em.flush();
             em.clear();
 
-        /*    List<Member> resultList = em.createQuery("select m from Member m where m.username = :name", Member.class)
-                    .setParameter("name", "member1")
-                    .getResultList();
-*/
 
-            String query ="select m from Member m where m.team.name = :teamName";
 
-            String query2 ="select m from Member m join m.team t where t.name = :teamName";
+                String jpql = "update Member m set m.age = 20";
+            int i = em.createQuery(jpql).executeUpdate();
 
-            List<Member> resultList = em.createQuery(query, Member.class)
-                    .setParameter("teamName","teamA")
-                    .getResultList();
-
-            for (Member s : resultList) {
-                System.out.println("팀 접근 before mebmer.username " + s.getUsername());
-                System.out.println("팀접근 = " + s.getTeam().getName());
-
-            }
-
+            System.out.println("i = " + i);
 
             tx.commit();
         }catch (Exception e){
