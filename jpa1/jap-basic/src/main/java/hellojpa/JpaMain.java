@@ -4,9 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,13 +25,25 @@ public class JpaMain {
         tx.begin();
 
 
-//
+
         try{
 
 
             Member member = new Member();
-            member.setUsername("member1");
+            member.setUsername("hello");
 
+            em.persist(member);
+
+            em.flush();
+            em.clear();
+
+            Member reference = em.getReference(Member.class, member.getId());
+
+
+         /*   Member findmember = em.find(Member.class, member.getId());
+
+            pM(findmember);
+            memberAndTeam(findmember);*/
 
             tx.commit();
 
@@ -48,6 +57,21 @@ public class JpaMain {
         //code
         em.close();
         emf.close();
+
+    }
+    private static void pM(Member member){
+        String username = member.getUsername();
+
+        System.out.println("username = " + username);
+
+    }
+    private static void memberAndTeam(Member member){
+        String username = member.getUsername();
+
+        System.out.println("username = " + username);
+        Team team = member.getTeam();
+
+        System.out.println("team = " + team);
 
     }
 }
