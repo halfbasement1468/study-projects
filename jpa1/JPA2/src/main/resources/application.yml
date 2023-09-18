@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+#        show_sql: true 얜 sql을 찍지만 systemOut으로 찍기 때문에 뺀다
+        format_sql: true
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.type: trace #sql파라미터 찍어줌
